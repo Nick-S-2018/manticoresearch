@@ -89,3 +89,13 @@ listening on all interfaces for sphinx and http(s), port=9308
 ––– input –––
 printf 'input {\n    file {\n        path => ["/var/log/dpkg.log"]\n        start_position => "beginning"\n        sincedb_path => "/dev/null"\n        mode => "read"\n        exit_after_read => "true"\n        file_completed_action => "log"\n        file_completed_log_path => "/dev/null"\n    }\n}\n\noutput {\n    elasticsearch {\n        index => "testlog_1"\n        hosts => ["http://localhost:9308"]\n        ilm_enabled => false\n        manage_template => false\n    }\n}\n' > logstash.conf
 ––– output –––
+––– input –––
+logstash -f logstash.conf > /dev/null; echo $?
+––– output –––
+OpenJDK 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.jruby.ext.openssl.SecurityHelper (file:/tmp/jruby-#![0-9]+!#/jruby#![0-9]+!#jopenssl.jar) to field java.security.MessageDigest.provider
+WARNING: Please consider reporting this to the maintainers of org.jruby.ext.openssl.SecurityHelper
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+0
