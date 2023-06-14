@@ -98,6 +98,6 @@ sleep 30
 ––– output –––
 [1]+  Done                    nohup logstash -f logstash.conf 2> /dev/null
 ––– input –––
-curl -s localhost:9308/cli_json -d 'describe testlog_1' | jq -c '.[].data | sort_by(.Field)'
+curl -s localhost:9308/cli_json -d 'describe testlog_1' | jq -cM '.[].data | sort_by(.Field)'
 ––– output –––
 [{"Field":"@timestamp","Type":"text","Properties":"indexed stored"},{"Field":"@version","Type":"text","Properties":"indexed stored"},{"Field":"host","Type":"text","Properties":"indexed stored"},{"Field":"id","Type":"bigint","Properties":""},{"Field":"message","Type":"text","Properties":"indexed stored"},{"Field":"path","Type":"text","Properties":"indexed stored"}]
