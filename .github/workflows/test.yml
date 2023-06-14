@@ -420,17 +420,17 @@ jobs:
 
   clt_logstash_test:
     name: CLT test on Logstash and Filebeat
-      needs: build_clt_docker
-      strategy:
-        matrix:
-          image: ["${{ needs.build_clt_docker.outputs.out-build }}"]
-      uses: manticoresoftware/clt/.github/workflows/clt-template.yml@v1
-      with:
-        docker_images: |
-          [
-            { "image": "${{matrix.image}}"},
-          ]
-        test_prefix: logstash-
+    needs: build_clt_docker
+    strategy:
+      matrix:
+        image: ["${{ needs.build_clt_docker.outputs.out-build }}"]
+    uses: manticoresoftware/clt/.github/workflows/clt-template.yml@v1
+    with:
+      docker_images: |
+        [
+          { "image": "${{matrix.image}}"},
+        ]
+      test_prefix: logstash-
     steps:
       - name: Upload CLT rep files
         uses: manticoresoftware/upload_artifact_with_retries@main
