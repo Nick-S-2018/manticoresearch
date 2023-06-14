@@ -92,4 +92,4 @@ printf 'input {\n    file {\n        path => ["/var/log/dpkg.log"]\n        star
 ––– input –––
 nohup logstash -f logstash.conf 2>/dev/null &
 ––– output –––
-[1] #![0-9]+!#
+[1] #!/[0-9]+/!#
