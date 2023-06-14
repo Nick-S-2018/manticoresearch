@@ -97,3 +97,20 @@ nohup logstash -f logstash.conf 2>/dev/null &
 sleep 30
 ––– output –––
 [1]+  Done                    nohup logstash -f logstash.conf 2> /dev/null
+––– input –––
+curl localhost:9308/cli -d 'DESCRIBE testlog_1'
+––– output –––
++------------+--------+----------------+
+| Field      | Type   | Properties     |
++------------+--------+----------------+
+| id         | bigint |                |
+| host       | text   | indexed stored |
+| path       | text   | indexed stored |
+| @timestamp | text   | indexed stored |
+| message    | text   | indexed stored |
+| @version   | text   | indexed stored |
++------------+--------+----------------+
+6 rows in set (#!/[0-9]+\.[0-9]+/!# sec)
+––– input –––
+printf 'filebeat.inputs:\n- type: filestream\n  id: testlog\n  paths:\n    - /var/log/dpkg.log\n\noutput.elasticsearch:\n  hosts: ["http://localhost:9308"]\n  index:  "testlog_2"\n  allow_older_versions: true\n\nsetup.ilm:\n  enabled: false\n\nsetup.template:\n  name: "testlog_2"\n  pattern: "testlog_2"\n' > filebeat.yml
+––– output –––
