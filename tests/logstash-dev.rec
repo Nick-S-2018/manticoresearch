@@ -97,3 +97,17 @@ nohup logstash -f logstash.conf 2>/dev/null &
 sleep 30
 ––– output –––
 [1]+  Done                    nohup logstash -f logstash.conf 2> /dev/null
+––– input –––
+curl localhost:9308/cli -d 'DESCRIBE testlog_1'
+––– output –––
++------------+--------+----------------+
+| Field      | Type   | Properties     |
++------------+--------+----------------+
+| id         | bigint |                |
+| host       | text   | indexed stored |
+| path       | text   | indexed stored |
+| @timestamp | text   | indexed stored |
+| message    | text   | indexed stored |
+| @version   | text   | indexed stored |
++------------+--------+----------------+
+6 rows in set (#!/[0-9]+\.[0-9]+/!# sec)
