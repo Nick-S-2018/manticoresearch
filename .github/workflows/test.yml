@@ -431,12 +431,6 @@ jobs:
           { "image": "${{matrix.image}}"},
         ]
       test_prefix: logstash-
-    steps:
-      - name: Upload CLT rep files
-        uses: manticoresoftware/upload_artifact_with_retries@main
-        with:
-          name: clt_rep_files
-          path: tests/
 
   build_aarch64:
     name: Linux aarch64 build
