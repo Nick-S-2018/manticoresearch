@@ -419,11 +419,7 @@ jobs:
 
   clt_logstash_test:
     name: CLT test on Logstash and Filebeat
-    if: |
-      (github.event_name == 'push' && github.ref == 'refs/heads/clt-test')
-      || (github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'pack') && !contains(github.event.pull_request.labels.*.name, 'publish'))
     needs: build_clt_docker
-    runs-on: ubuntu-22.04
     strategy:
       matrix:
         image: ["${{ needs.build_clt_docker.outputs.out-build }}"]
