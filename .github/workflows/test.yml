@@ -2,7 +2,7 @@ name: 🔬 Test
 
 on:
   push:
-    branches: [ master ]
+    branches: [ clt-test ]
   pull_request:
     branches: [ master ]
     types: [opened, synchronize, reopened, labeled, unlabeled]
@@ -360,7 +360,7 @@ jobs:
   pack_focal:
     name: Focal x86_64 package
     if: |
-      (github.event_name == 'push' && github.ref == 'refs/heads/master')
+      (github.event_name == 'push' && github.ref == 'refs/heads/clt-test')
       || (github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'pack') && !contains(github.event.pull_request.labels.*.name, 'publish'))
     uses: ./.github/workflows/build_template.yml
     with:
@@ -377,7 +377,7 @@ jobs:
   build_clt_docker:
     name: CLT docker image
     if: |
-      (github.event_name == 'push' && github.ref == 'refs/heads/master')
+      (github.event_name == 'push' && github.ref == 'refs/heads/clt-test')
       || (github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'pack') && !contains(github.event.pull_request.labels.*.name, 'publish'))
     needs: pack_focal
     runs-on: ubuntu-22.04
@@ -420,7 +420,7 @@ jobs:
   clt_logstash_test:
     name: CLT test on Logstash and Filebeat
     if: |
-      (github.event_name == 'push' && github.ref == 'refs/heads/master')
+      (github.event_name == 'push' && github.ref == 'refs/heads/clt-test')
       || (github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'pack') && !contains(github.event.pull_request.labels.*.name, 'publish'))
     needs: build_clt_docker
     runs-on: ubuntu-22.04
