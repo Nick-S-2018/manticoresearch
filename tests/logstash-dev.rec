@@ -116,7 +116,7 @@ printf 'filebeat.inputs:\n- type: filestream\n  id: testlog\n  paths:\n    - /va
 ––– input –––
 nohup filebeat -c filebeat.yml -e -strict.perms=false 2>/dev/null &
 ––– output –––
-[2] #![0-9]+#!
+[1] #![0-9]+#!
 ––– input –––
 sleep 30
 ––– output –––
