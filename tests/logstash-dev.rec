@@ -6,7 +6,7 @@ apt-get update > /dev/null; echo $?
 ––– output –––
 0
 ––– input –––
-apt-get -y install gnupg2 wget openjdk-8-jre-headless curl jq > /dev/null; echo $?
+apt-get -y install gnupg2 openjdk-8-jre-headless curl jq > /dev/null; echo $?
 ––– output –––
 debconf: delaying package configuration, since apt-utils is not installed
 0
@@ -98,7 +98,7 @@ sleep 30
 ––– output –––
 [1]+  Done                    nohup logstash -f logstash.conf 2> /dev/null
 ––– input –––
-curl -s localhost:9308/cli_json -d 'describe testlog_1' | jq'.[].data |  sort_by(.Field)'
+curl -s localhost:9308/cli_json -d 'describe testlog_1' | jq '.[].data |  sort_by(.Field)'
 ––– output –––
 [
   {
@@ -143,7 +143,7 @@ nohup filebeat -c filebeat.yml -e -strict.perms=false 2>/dev/null &
 sleep 30
 ––– output –––
 ––– input –––
-curl -s localhost:9308/cli_json -d 'describe testlog_2' | jq'.[].data |  sort_by(.Field)'
+curl -s localhost:9308/cli_json -d 'describe testlog_2' | jq '.[].data |  sort_by(.Field)'
 ––– output –––
 [
   {
