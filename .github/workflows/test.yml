@@ -360,7 +360,7 @@ jobs:
   pack_focal:
     name: Focal x86_64 package
     if: |
-      (github.event_name == 'push' && github.ref == 'refs/heads/clt-test')
+      (github.event_name == 'push' && github.ref == 'refs/heads/master')
       || (github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'pack') && !contains(github.event.pull_request.labels.*.name, 'publish'))
     uses: ./.github/workflows/build_template.yml
     with:
@@ -419,18 +419,24 @@ jobs:
       #    path: docker/manticore_clt.img
 
   clt_logstash_test:
-    name: CLT test on Logstash and Filebeat
-    needs: build_clt_docker
-    strategy:
-      matrix:
-        image: ["${{ needs.build_clt_docker.outputs.out-build }}"]
-    uses: manticoresoftware/clt/.github/workflows/clt-template.yml@v1
-    with:
-      docker_images: |
-        [
-          { "image": "${{matrix.image}}"},
-        ]
-      test_prefix: logstash-
+    steps:
+      - name: CLT test on Logstash and Filebeat
+        needs: build_clt_docker
+        strategy:
+          matrix:
+            image: ["${{ needs.build_clt_docker.outputs.out-build }}"]
+        uses: manticoresoftware/clt/.github/workflows/clt-template.yml@v1
+        with:
+          docker_images: |
+            [
+              { "image": "${{matrix.image}}"},
+            ]
+          test_prefix: logstash-
+      - name: Upload CLT rep files
+        uses: manticoresoftware/upload_artifact_with_retries@main
+        with:
+          name: clt_rep_files
+          path: tests/
 
   build_aarch64:
     name: Linux aarch64 build
