@@ -1,5 +1,5 @@
-name: 📖 checkdocs
-run-name: 📖 checkdocs
+name: 📖 Check docs
+run-name: 📖 Check docs ${{ github.sha }}
 
 on:
   workflow_call:
