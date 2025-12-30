@@ -5,7 +5,7 @@
 
 ### Recommended Libraries
 - Recommended [MCL](https://github.com/manticoresoftware/columnar) version: 9.0.0.12
-- Recommended [Buddy](Installation/Manticore_Buddy.md#Manticore-Buddy) version: 3.40.2
+- Recommended [Buddy](Installation/Manticore_Buddy.md#Manticore-Buddy) version: 3.40.21
 
 If you follow the [official installation guide](https://manticoresearch.com/install/), you don't need to worry about this.
 
