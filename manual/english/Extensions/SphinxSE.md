@@ -4,6 +4,8 @@ SphinxSE is a MySQL storage engine that can be compiled into MySQL/MariaDB serve
 
 Despite its name, SphinxSE does *not* actually store any data itself. Instead, it serves as a built-in client that enables the MySQL server to communicate with `searchd`, execute search queries, and retrieve search results. All indexing and searching take place outside MySQL.
 
+test
+
 Some common SphinxSE applications include:
 * Simplifying the porting of MySQL Full-Text Search (FTS) applications to Manticore;
 * Enabling Manticore use with programming languages for which native APIs are not yet available;
