@@ -2,6 +2,8 @@
 
 Stop words are words that are ignored during indexing and searching, typically due to their high frequency and low value to search results.
 
+Test
+
 Manticore Search applies [stemming](../../Creating_a_table/NLP_and_tokenization/Morphology.md) to stop words by default, which can lead to undesired results, but this can be turned off using the [stopwords_unstemmed](../../Creating_a_table/NLP_and_tokenization/Ignoring_stop-words.md#stopwords_unstemmed).
 
 Small stop word files are stored in the table header, and there is a limit to the size of files that can be embedded, as defined by the [embedded_limit](../../Creating_a_table/NLP_and_tokenization/Low-level_tokenization.md#embedded_limit) option.
