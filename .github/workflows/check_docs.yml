@@ -22,6 +22,8 @@ jobs:
       - name: Check origin repository
         id: repo-check
         run: |
+          echo "test1=${{github.event.workflow_run.event}} 
+          echo "test2=${{github.event.workflow_run.event.pull_request.head.repo.full_name}} 
           if [ "${{ github.event_name }}" == "workflow_run" ]; then
             repo="${{ github.event.workflow_run.head.repo.full_name }}"
           else
