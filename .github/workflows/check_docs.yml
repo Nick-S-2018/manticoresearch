@@ -31,12 +31,15 @@ jobs:
         id: repo-check
         run: |
           if [ "${{ github.event_name }}" == "workflow_run" ]; then
-            repo=$(cat ./pr_repo.txt)
-            echo "TEST=$repo"
+            repo=$(cat ./pr_repo.txt | head -n 1)
+            ref=$(cat ./pr_repo.txt | head -n 2)
+            echo "TEST1=$repo"
+            echo "TEST2=$ref"
           else
             repo="${{ github.repository }}"
           fi
           echo "repo=$repo" >> $GITHUB_OUTPUT
+          echo "branch=$branch" >> $GITHUB_OUTPUT
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -44,7 +47,7 @@ jobs:
           repository: ${{ steps.repo-check.outputs.repo }}
           token: ${{ secrets.GITHUB_TOKEN }}
           submodules: true
-          ref: ${{ github.head_ref }}
+          ref: ${{ steps.repo-check.outputs.ref }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
