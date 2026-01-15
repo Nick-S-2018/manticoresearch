@@ -21,7 +21,11 @@ jobs:
       - name: Save PR repo
         env:
           PR_REPO: ${{ github.event.pull_request.head.repo.full_name }}
-        run: echo $PR_REPO > pr_repo.txt
+          PR_REPO_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          echo "TEST=$PR_REPO_BRANCH"
+          echo $PR_REPO > pr_repo.txt
+          echo $PR_REPO_BRANCH > pr_repo.txt
       - name: Upload PR repo name
         uses: actions/upload-artifact@v4
         with:
