@@ -31,7 +31,7 @@ jobs:
         id: repo-check
         run: |
           if [ "${{ github.event_name }}" == "workflow_run" ]; then
-            $PR_REPO=$(cat ./pr_repo.txt)
+            PR_REPO=$(cat ./pr_repo.txt)
             repo=$(head -n 1 <<< "$PR_REPO")
             ref=$(tail -n 1 <<< "$PR_REPO")
             echo "TEST1=$repo"
