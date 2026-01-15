@@ -1,12 +1,12 @@
-# 介绍
+# 简介
 
 测试。
-Manticore Search 是一款专为搜索和分析而设计的高性能、多存储数据库，提供闪电般的全文搜索、实时索引以及向量搜索和列式存储等高级功能，以实现高效的数据分析。它能够处理小数据集和大数据集，为现代应用程序提供无缝的可扩展性和强大的洞察力。
+Manticore Search 是一款专为搜索和分析设计的高性能、多存储数据库，提供闪电般的全文搜索、实时索引以及其他高级功能，如向量搜索和列式存储，以实现高效的数据分析。它能够处理小数据集和大数据集，同时提供无缝的可扩展性和现代应用程序的强大洞察力。
 
-作为一款开源数据库（可在 [GitHub](https://github.com/manticoresoftware/manticoresearch/) 上获取），Manticore Search 于 2017 年作为 [Sphinx Search](https://sphinxsearch.com/) 引擎的延续而创建。我们的开发团队将 Sphinx 的所有最佳功能整合进来，并显著改进了其功能，同时修复了数百个错误（详见我们的 [Changelog](https://manual.manticoresearch.com/Changelog)）。Manticore Search 是一款现代、快速且轻量级的数据库，具有卓越的全文搜索能力，其前身几乎完全重写。
+作为一款开源数据库（可在 [GitHub](https://github.com/manticoresoftware/manticoresearch/) 上获取），Manticore Search 于 2017 年作为 [Sphinx Search](https://sphinxsearch.com/) 引擎的延续而创建。我们的开发团队借鉴了 Sphinx 的所有最佳功能，并显著改进了其功能，同时修复了数百个错误（如我们的 [Changelog](https://manual.manticoresearch.com/Changelog) 中所述）。Manticore Search 是一款现代、快速且轻量级的数据库，具有卓越的全文搜索功能，其前身几乎完全重写。
 
-## Manticore 的关键功能包括：
-#### 强大且快速的全文搜索，适用于小数据集和大数据集
+## Manticore 的主要功能包括：
+#### 适用于小数据集和大数据集的强大且快速的全文搜索
 
   * [查询自动补全](Searching/Autocomplete.md)
   * [模糊搜索](Searching/Spell_correction.md#Fuzzy-Search)
@@ -16,16 +16,16 @@ Manticore Search 是一款专为搜索和分析而设计的高性能、多存储
   * [词形还原](Creating_a_table/NLP_and_tokenization/Morphology.md)
   * [停用词](Creating_a_table/NLP_and_tokenization/Ignoring_stop-words.md)
   * [同义词](Creating_a_table/NLP_and_tokenization/Exceptions.md)
-  * [词形转换](Creating_a_table/NLP_and_tokenization/Wordforms.md)
+  * [词形](Creating_a_table/NLP_and_tokenization/Wordforms.md)
   * [字符和单词级别的高级分词](Creating_a_table/NLP_and_tokenization/Low-level_tokenization.md)
   * [正确的中文分词](Creating_a_table/NLP_and_tokenization/Languages_with_continuous_scripts.md)
   * [文本高亮](Searching/Highlighting.md)
 
 #### 向量搜索功能
-Manticore Search 支持将您的机器学习模型生成的嵌入向量添加到每个文档中，然后对它们执行 [最近邻搜索](Searching/KNN.md)。这使您能够构建基于 NLP 算法的功能，如相似性搜索、推荐、语义搜索和相关性排序，以及其他功能，包括图像、视频和声音搜索。
+Manticore Search 支持将您的机器学习模型生成的嵌入向量添加到每个文档中，然后对它们执行 [最近邻搜索](Searching/KNN.md)。这使您可以构建基于 NLP 算法的功能，如相似性搜索、推荐、语义搜索和相关性排序，以及其他功能，包括图像、视频和声音搜索。
 
 #### JOIN
-Manticore Search 支持通过 SQL 和 JSON 的 [JOIN](Searching/Joining.md) 查询，允许您将多个表中的数据结合起来。
+Manticore Search 支持通过 SQL 和 JSON 的 [JOIN](Searching/Joining.md) 查询，允许您合并多个表中的数据。
 
 #### 多线程
 Manticore Search 利用智能查询并行化来降低响应时间，并在需要时充分利用所有 CPU 核心。
@@ -34,19 +34,19 @@ Manticore Search 利用智能查询并行化来降低响应时间，并在需要
 基于成本的查询优化器使用有关索引数据的统计信息来评估给定查询的不同执行计划的相对成本。这使优化器能够确定最有效的计划来检索所需结果，同时考虑索引数据的大小、查询的复杂性以及可用资源等因素。
 
 #### 存储选项
-Manticore 提供 [行式和列式存储选项](Creating_a_table/Data_types.md#Row-wise-and-columnar-attribute-storages)，以适应各种大小的数据集。传统的默认行式存储选项适用于所有大小的数据集——小、中、大，而列式存储选项则通过 Manticore Columnar Library 提供，适用于更大的数据集。这些存储选项之间的主要区别在于，行式存储需要将所有属性（不包括全文字段）保留在 RAM 中以实现最佳性能，而列式存储则不需要，因此提供更低的 RAM 消耗，但可能会略微降低性能（如 https://db-benchmarks.com/ 上的统计数据所示）。
+Manticore 提供 [行式和列式存储选项](Creating_a_table/Data_types.md#Row-wise-and-columnar-attribute-storages)，以适应各种大小的数据集。传统的默认行式存储选项适用于所有大小的数据集 - 小型、中型和大型，而列式存储选项则通过 Manticore 列式库提供，适用于更大的数据集。这些存储选项之间的主要区别在于，行式存储需要将所有属性（排除全文字段）保留在 RAM 中以实现最佳性能，而列式存储则不需要，因此提供更低的 RAM 消耗，但可能会略微降低性能（如 https://db-benchmarks.com/ 上的统计数据所示）。
 
-#### 自动次级索引
-[Manticore Columnar Library](https://github.com/manticoresoftware/columnar/) 使用 [Piecewise Geometric Model 索引](https://github.com/gvinciguerra/PGM-index)，该索引利用了索引键与其在内存中位置之间的学习映射。这种映射的简洁性，加上一种特殊的递归构造算法，使 PGM 索引成为一种在空间上比传统索引高出几个数量级的数据结构，同时仍提供最佳的查询和更新时间性能。次级索引默认对所有数字和字符串字段启用，并且可以为 JSON 属性启用。
+#### 自动二级索引
+[Manticore 列式库](https://github.com/manticoresoftware/columnar/) 使用 [分段几何模型索引](https://github.com/gvinciguerra/PGM-index)，该索引利用了索引键与其在内存中位置之间的学习映射。这种映射的简洁性，加上一种特殊的递归构造算法，使 PGM 索引成为一种数据结构，其空间效率比传统索引高出几个数量级，同时仍提供最佳的查询和更新时间性能。二级索引默认对所有数字和字符串字段启用，也可以为 json 属性启用。
 
-#### 以 SQL 为主
-Manticore 的原生语法是 SQL，并且支持通过 HTTP 和 MySQL 协议使用 SQL，允许通过任何编程语言的流行 MySQL 客户端进行连接。
+#### SQL 优先
+Manticore 的本地语法是 SQL，并且支持通过 HTTP 和 MySQL 协议使用 SQL，允许通过任何编程语言的流行 mysql 客户端进行连接。
 
-#### 通过 HTTP 的 JSON
+#### HTTP 上的 JSON
 为了以更编程化的方式管理数据和模式，Manticore 提供了 [HTTP JSON](Searching/Full_text_matching/Basic_usage.md#HTTP-JSON) 协议，类似于 Elasticsearch 的协议。
 
 #### 与 Elasticsearch 兼容的写入
-您可以执行与 Elasticsearch 兼容的 [插入](Data_creation_and_modification/Adding_documents_to_a_table/Adding_documents_to_a_real-time_table.md#Adding-documents-to-a-real-time-table) 和 [替换](Data_creation_and_modification/Updating_documents/REPLACE.md#REPLACE) JSON 查询，这使得可以使用 Manticore 与 Logstash（版本 < 7.13）、Filebeat 和其他 Beats 家族工具。
+您可以执行与 Elasticsearch 兼容的 [插入](Data_creation_and_modification/Adding_documents_to_a_table/Adding_documents_to_a_real-time_table.md#Adding-documents-to-a-real-time-table) 和 [替换](Data_creation_and_modification/Updating_documents/REPLACE.md#REPLACE) JSON 查询，这使得可以使用 Manticore 与 Logstash（版本 < 7.13）、Filebeat 和其他来自 Beats 家族的工具。
 
 #### 声明式和命令式模式管理
 通过在线或通过配置文件轻松创建、更新和删除表。
